@@ -1,0 +1,16 @@
+{
+  "port": 8099,
+  "mappings": [{
+    "match": "^/url",
+    "custom": "oauth/url"
+  }, {
+    "match": "^/callback",
+    "custom": "oauth/callback"
+  }, {
+    "match": "^/(.*)",
+    "file": "./www/$1"
+  }, {
+    "match": "^/",
+    "file": "./www/index.html"
+  }]
+}
