@@ -1,0 +1,28 @@
+{
+  "name": "training-oauth-imgur",
+  "version": "1.0.0",
+  "description": "Example of OAUTH client",
+  "scripts": {
+    "start": "reserve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArnaudBuchholz/training-oauth-imgur.git"
+  },
+  "keywords": [
+    "oauth",
+    "training"
+  ],
+  "author": "Arnaud Buchholz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ArnaudBuchholz/training-oauth-imgur/issues"
+  },
+  "homepage": "https://github.com/ArnaudBuchholz/training-oauth-imgur#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "got": "^11.8.2",
+    "nanoid": "^3.1.28",
+    "reserve": "^1.11.7"
+  }
+}
