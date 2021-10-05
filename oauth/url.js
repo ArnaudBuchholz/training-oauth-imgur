@@ -1,17 +1,16 @@
 'use strict'
 
 require('dotenv').config()
-const { get: getState } = require('./state')
+const { allocate } = require('./state')
 
 const authUrl = 'https://api.imgur.com/oauth2/authorize'
 
 module.exports = async (request, response) => {
-  const url = `${authUrl}?client_id=${process.env.IMGUR_APP_CLIENT_ID}&response_type=code&state=${getState()}`
-  console.log('URL :', url)
-  const body = JSON.stringify({ url })
-  response.writeHead(200, {
-      'content-type': 'application/json',
-      'content-length': body.length
+  const state = allocate()
+  const url = `${authUrl}?client_id=${process.env.IMGUR_APP_CLIENT_ID}&response_type=code&state=${state}`
+  console.log({ url, state })
+  response.writeHead(302, {
+    location: url
   })
-  response.end(body)
+  response.end()
 }
