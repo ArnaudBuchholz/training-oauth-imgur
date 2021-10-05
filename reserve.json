@@ -1,11 +1,21 @@
 {
   "port": 8099,
   "mappings": [{
-    "match": "^/url",
-    "custom": "oauth/url"
+    "match": "^/url$",
+    "watch": true,
+    "custom": "oauth/url.js"
   }, {
     "match": "^/callback",
-    "custom": "oauth/callback"
+    "watch": true,
+    "custom": "oauth/callback.js"
+  }, {
+    "match": "^/whoami",
+    "watch": true,
+    "custom": "oauth/whoami.js"
+  }, {
+    "match": "^/account",
+    "watch": true,
+    "custom": "oauth/account.js"
   }, {
     "match": "^/(.*)",
     "file": "./www/$1"
