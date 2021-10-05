@@ -1,17 +1,34 @@
 'use strict'
 
+require('dotenv').config()
 const { nanoid } = require('nanoid')
 
-const generated = []
+const stateTimeout = parseInt(process.env.STATE_TIMEOUT, 10)
+
+const states = {}
 
 module.exports = {
-  get: () => {
+  allocate () {
     const state = nanoid()
-    generated.push(state) // ttl ?
+    const stateObject = {}
+    stateObject.promise = new Promise(resolve => {
+      stateObject.resolver = function (status) {
+        console.log(state, '=>', status)
+        stateObject.status = status
+        resolve(status)
+        delete states[state]
+      }
+      setTimeout(() => stateObject.resolver('timeout'), stateTimeout)
+    })
+    states[state] = stateObject
     return state
   },
 
-  verify: state => {
-    return generated.includes(state)
+  get (state) {
+    return states[state]
+  },
+
+  verify (state) {
+    return !!states[state]
   }
 }
