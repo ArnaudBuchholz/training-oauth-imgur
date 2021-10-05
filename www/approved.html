@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>OAUTH test client with imgur</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>    
+  </head>
+  <body>
+    <main role="main" class="container">
+      <h1>The authentication was approved, welcome <span id="whoami"></span></h1>
+      <img id="avatar" src=""><br>
+      <a href="index.html">re-authenticate</a>
+    </main>
+    <script>
+fetch('/whoami')
+  .then(response => response.text())
+  .then(whoami => document.getElementById('whoami').appendChild(document.createTextNode(whoami)))
+fetch('/account')
+  .then(response => response.json())
+  .then(account => document.getElementById('avatar').setAttribute('src', account.avatar))
+    </script>
+  </body>
+</html>
